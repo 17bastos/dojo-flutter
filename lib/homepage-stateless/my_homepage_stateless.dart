@@ -1,4 +1,5 @@
 import 'package:dojo/homepage-stateless/bloc/homepage_bloc.dart';
+import 'package:dojo/homepage-stateless/screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
@@ -42,44 +43,16 @@ class MyHomePageStateless extends StatelessWidget {
   _state() {
     return BlocBuilder<HomepageBloc, HomepageState>(
       builder: (context, state) {
-        if (state is HomepageEmptyState) return _empty();
+        if (state is HomepageEmptyState) return screen('assets/lotties/empty.json');
 
-        if (state is HomepageErrorState) return _error();
+        if (state is HomepageErrorState) return screen('assets/lotties/error.json');
 
-        if (state is HomepageLoadingState) return _loading();
+        if (state is HomepageLoadingState) return screen('assets/lotties/loading.json');
 
-        if (state is HomepageSuccessState) return _success();
+        if (state is HomepageSuccessState) return screen('assets/lotties/success.json');
 
         return Text("Unknow State");
       },
-    );
-  }
-
-  _empty() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [Lottie.asset('assets/lotties/empty.json', width: 300)],
-    );
-  }
-
-  _error() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [Lottie.asset('assets/lotties/error.json', width: 300)],
-    );
-  }
-
-  _loading() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [Lottie.asset('assets/lotties/loading.json', width: 300)],
-    );
-  }
-
-  _success() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [Lottie.asset('assets/lotties/success.json', width: 300)],
     );
   }
 }
